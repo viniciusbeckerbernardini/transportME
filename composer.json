@@ -1,0 +1,31 @@
+{
+    "name": "vini/gtfs",
+    "description": "Trabalho final da cadeira de web",
+    "type": "project",
+    "require": {
+        "slim/slim": "^4.3",
+        "nyholm/psr7": "^1.2",
+        "nyholm/psr7-server": "^0.3.0",
+        "slim/psr7": "^0.6.0",
+        "guzzlehttp/psr7": "^1.6",
+        "http-interop/http-factory-guzzle": "^1.0",
+        "zendframework/zend-diactoros": "^2.1",
+        "symfony/dotenv": "^4.3"
+    },
+    "require-dev": {
+        "composer/xdebug-handler": "^1.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "vinicius.becker.bernardini",
+            "email": "vbkmma@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "model\\": "model",
+            "persistence\\": "persistence"
+        }
+    }
+}
