@@ -10,9 +10,9 @@ class Database{
 	
 	protected $connection;
 
-	private static function getEnvVariables(){
+	public static function getEnvVariables(){
 	    $dotenv = new Dotenv();
-	    $dotenv->load($_SERVER['DOCUMENT_ROOT'].'/CONNECTION.env');
+	    $dotenv->load($_SERVER['DOCUMENT_ROOT'].'/DBCONNECTION.env');
     }
 
 

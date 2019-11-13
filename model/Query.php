@@ -19,12 +19,12 @@ class Query extends Database{
 	}
 
 	public function setQuery(string $query, array $params = array()){
-		
+
 		$this->query = $this->connection->prepare($query);
-		
+
 		if(!empty($params)){
 			foreach ($params as $bind => $param) {
-				$this->query->bindParam($bind,$param);
+				$this->query->bindValue($bind,$param);
 			}
 		}
 	}
@@ -38,7 +38,13 @@ class Query extends Database{
 	}
 
 	public function execQuery(bool $bringResults = null){
-		$this->query->execute();
+	    try{
+            $this->query->execute();
+
+        }catch (\PDOException $e){
+
+	        throw new \PDOException($e->getMessage());
+        }
 	}
 
 }
