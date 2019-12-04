@@ -29,10 +29,6 @@ class Query extends Database{
 		}
 	}
 
-	public function getQuery(){
-
-	}
-
 	public function getResults(){
 		return $this->query->fetchAll(PDO::FETCH_ASSOC);
 	}

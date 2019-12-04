@@ -149,7 +149,8 @@ class User{
 
         $query = new Query();
 
-        $query->setQuery("SELECT * FROM api_user WHERE email=:email_user AND password=:password_user",
+        $query->setQuery("SELECT * FROM USERS WHERE email=:email_user AND password=:password_user",
+
             array(
                 ":email_user"=> $email,
                 ":password_user"=> $password
@@ -157,12 +158,13 @@ class User{
         );
 
         try{
-
             $query->execQuery();
-            return $query->getResults()[0];
 
+            $return = $query->getResults()[0];
+
+            return $return != null && is_array($return) && !empty($return) ? $return :array();
         }catch (\PDOException $e){
-            $e->getMessage();
+            throw new \PDOException($e->getMessage());
         }
 
     }
@@ -190,12 +192,15 @@ class User{
 
         JWT::$leeway = 5;
 
-        $decode = JWT::decode($jwt,$key,array('HS256'));
+        try {
+            $decode = JWT::decode($jwt,$key,array('HS256'));
+        }catch (\UnexpectedValueException $e){
+            return false;
+        }
 
         if(!empty($decode)){
             return $decode;
         }else{
-            return false;
         }
     }
 
